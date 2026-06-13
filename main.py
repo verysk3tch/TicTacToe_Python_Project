@@ -18,10 +18,14 @@ def boardGenerate(boardMatrix):
 def winnerStatement(winnerNumber): 
     if(winnerNumber == 2): 
         print("Congratulations! X has won the game")
-    else: 
+    elif(winnerNumber == 1): 
         print("Congratulations! O has won the game")
+    else: 
+        print("The game is Tie!")
+        
 
 def winLogic(boardMatrix): 
+    tieCondition = not any(0 in row for row in boardMatrix)
     #Rows
     if(boardMatrix[0][0] == boardMatrix[0][1] == boardMatrix [0][2] != 0): 
         winnerStatement(boardMatrix[0][0])
@@ -49,7 +53,9 @@ def winLogic(boardMatrix):
     elif(boardMatrix[2][0] == boardMatrix[1][1] == boardMatrix [0][2] != 0): 
         winnerStatement(boardMatrix[2][0])
         return True
-    
+    elif(tieCondition == True):
+        winnerStatement(0)
+        return False
     else: 
         return False
             
@@ -87,7 +93,7 @@ def runGame():
             pass
         
         illegalPlacement = False
-        
+
         while(illegalPlacement != True): 
             userInput_O = input("Enter where you would like to place (O) IE. Row 0  column 1 = 01: ")
             userRow = int(userInput_O[0:1])
