@@ -49,7 +49,7 @@ def winLogic(boardMatrix):
     elif(boardMatrix[2][0] == boardMatrix[1][1] == boardMatrix [0][2] != 0): 
         winnerStatement(boardMatrix[2][0])
         return True
-
+    
     else: 
         return False
             
@@ -64,23 +64,42 @@ def runGame():
     userRow = 0
     userColumn = 0 
     boardGenerate(boardMatrix)
-    while(winCondition_X == False and winCondition_O == False): 
 
-        userInput_X = (input("Enter where you would like to place (X) IE. Row 0  column 1 = 0: ")) 
-        userRow = int(userInput_X[0:1])
-        userColumn = int(userInput_X[1:2])
-        boardMatrix[userRow][userColumn] = 2
+    while(winCondition_X == False and winCondition_O == False): 
+        
+        illegalPlacement = False
+        
+        while(illegalPlacement != True): 
+            userInput_X = (input("Enter where you would like to place (X) IE. Row 0  column 1 = 0: ")) 
+            userRow = int(userInput_X[0:1])
+            userColumn = int(userInput_X[1:2])
+            if(boardMatrix[userRow][userColumn] != 0): 
+                print("You cant place in this position try again")
+            else: 
+                boardMatrix[userRow][userColumn] = 2
+                illegalPlacement = True
+
         boardGenerate(boardMatrix)
+
         if(winLogic(boardMatrix) == True): 
             break
         else: 
             pass
-
-        userInput_O = input("Enter where you would like to place (O) IE. Row 0  column 1 = 01: ")
-        userRow = int(userInput_O[0:1])
-        userColumn = int(userInput_O[1:2])
-        boardMatrix[userRow][userColumn] = 1
+        
+        illegalPlacement = False
+        
+        while(illegalPlacement != True): 
+            userInput_O = input("Enter where you would like to place (O) IE. Row 0  column 1 = 01: ")
+            userRow = int(userInput_O[0:1])
+            userColumn = int(userInput_O[1:2])
+            if(boardMatrix[userRow][userColumn] != 0): 
+                print("You cant place in this position try again")
+            else: 
+                boardMatrix[userRow][userColumn] = 1
+                illegalPlacement = True
+        
         boardGenerate(boardMatrix)
+
         if(winLogic(boardMatrix) == True): 
             break
         else: 
