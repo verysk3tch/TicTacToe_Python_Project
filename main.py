@@ -46,7 +46,7 @@ def winLogic(boardMatrix):
     elif(boardMatrix[0][2] == boardMatrix[1][2] == boardMatrix [2][2] != 0): 
         winnerStatement(boardMatrix[0][2])
         return True
-        #Diagonal
+    #Diagonal
     elif(boardMatrix[0][0] == boardMatrix[1][1] == boardMatrix [2][2] != 0): 
         winnerStatement(boardMatrix[0][0])
         return True
